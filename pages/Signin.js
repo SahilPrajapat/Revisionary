@@ -4,7 +4,6 @@ import { auth } from "./../firebase";
 import { useState, useEffect } from "react";
 import signinWithGoogle from "./components/Home/signInOut";
 
-
 function Signin() {
   const router = useRouter();
   const [email, setEmail] = useState("");

@@ -1,8 +1,25 @@
 import Header from "./components/Home/Header";
 import Button from "@material-tailwind/react/Button";
 import Draft from './components/Home/Draft';
+import { useState } from 'react';
 
 function add() {
+
+  const [question, setQuestion] = useState("mt-10 mx-20");
+  const [answer, setAnswer] = useState("mt-10 mx-20 hidden");
+
+  let handleQuestionClick = () => {
+    setQuestion("mt-10 mx-20")
+    setAnswer("mt-10 mx-20 hidden")
+    console.log("question")
+  }
+
+  let handleAnswerClick = () => {
+    setQuestion("mt-10 mx-20 hidden")
+    setAnswer("mt-10 mx-20")
+    console.log("answer")
+  }
+
   return (
     <div className="">
       <div>
@@ -31,9 +48,29 @@ function add() {
             </Button>
           </div>
         </div>
+        <div className="flex flex-row w-1/4 border-2 ml-20">
+          <Button
+          color="lightBlue"
+          buttonType="link"
+          size="regular"
+          rounded={false}
+          block={false}
+          iconOnly={false}
+          ripple="dark"
+          onClick={handleQuestionClick}
+          >Question</Button>
+          
+          <Button
+          onClick={handleAnswerClick}
+          >Answer</Button>
+        </div>
         
         {/* Editable part */}
-        <div className="mt-10 mx-20">
+        <div className={question}>
+            <Draft />
+        </div>
+
+        <div className={answer}>
             <Draft />
         </div>
       </div>

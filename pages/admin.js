@@ -1,17 +1,33 @@
-import { useRouter } from 'next/router'
-import { checkAdmin } from "../services/adminService"
+import { checkAdmin } from "../services/adminService";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 function admin() {
     const router = useRouter();
 
-    if(!checkAdmin())
-        // router.replace('/');
+    useEffect(() => {
+        const checkadmin = () => {
+          if (!checkAdmin()) {
+            router.replace("/");
+          } else {
+            console.log('falsse');
+          }
+        }
+
+        return () => {
+            checkadmin();
+        }
+    });
+
+
 
     return (
 
         <div>
-            {console.log(checkAdmin())}
+            {/* {()=> checkadmin()} */}
+            <p>ksdhfkjhaklsjhfd</p>
         </div>
+
     )
 }
 
