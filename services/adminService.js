@@ -1,17 +1,16 @@
 import firebase from "firebase";
 
-let adminEmail = "sparjap005@gmail.com";
+let adminEmail = "test2@gmail.com";
 
 function checkAdmin() {
   const user = firebase.auth().currentUser;
-  // firebase.auth().onAuthStateChanged((user) => {
   if (user !== null) {
     const email = user.email;
     console.log(email);
-    // if (email === adminEmail) return true;
+    if (email === adminEmail) return true;
   } else {
     //   var uid = user.uid;
-    // return false;
+    return false;
   }
   // });
 }

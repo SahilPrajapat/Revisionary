@@ -32,7 +32,7 @@ function lecture() {
 
       {/* Card */}
       <div className="grid grid-flow-col-dense px-52 bg-white mb-10">
-        <div className="grid grid-cols-2 bg-yellow-300 cursor-pointer h-20 w-80">
+        <div className="grid grid-cols-2 bg-yellow-300 cursor-pointer h-20 w-80" onClick={() => router.push("/StudyNow")}>
           <p className="justify-center text-left text-2xl text-blue-900 font-bold pl-5 pt-5">
             Study Now
           </p>
@@ -40,7 +40,7 @@ function lecture() {
             13 cards
           </p>
         </div>
-        <div className="bg-yellow-300 cursor-pointer h-20 w-80">
+        <div className="bg-yellow-300 cursor-pointer h-20 w-80" onClick={() => router.push("/Preview")}>
           <p className="flex justify-evenly text-left text-2xl text-blue-900 font-bold pt-4">
             Preview Deck
             <Icon className="" name="more_horiz" size="5xl" color="gray"/>
