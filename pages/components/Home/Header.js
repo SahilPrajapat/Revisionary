@@ -39,7 +39,7 @@ function Header() {
     }
 
   return (
-    <header className="sticky top-0 grid grid-cols-3 px-4 py-4 bg-blue-800">
+    <header className="sticky top-0 grid grid-cols-3 px-4 py-4 bg-regal-blue">
       {/* left */}
       <div className="flex flex-row">
         <Button

@@ -16,7 +16,9 @@ export default function Home() {
 
         <Header />
         <main className="max-w-screen-2xl mx-auto">
-        <Banner/>
+        {/* <div className="w-full h-80 border-4"> */}
+          <Banner/>
+        {/* </div> */}
         <Bottom />
         </main>
         <Footer/> 

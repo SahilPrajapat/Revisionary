@@ -36,7 +36,7 @@ function Courses() {
           color=""
           iconOnly={true}
           ripple="dark"
-          className="md:inline-flex h-15 w-24 bg-blue-800 border-0 mt-2"
+          className="md:inline-flex h-15 w-24 bg-regal-blue border-0 mt-2"
           onClick={() => changeList()}
         >
           <h1 className="text-white justify-center">Show more</h1>

@@ -27,14 +27,14 @@ function StudyNow() {
         <div className="grid">
             <div className="ml-auto">
                 <Button
-                    className="w-52 h-16"
-                    color="yellow"
+                    color=""
                     buttonType="filled"
                     size="lg"
                     rounded={false}
                     block={false}
                     iconOnly={false}
                     ripple="light"
+                    className="bg-sandy w-60 h-16"
                     onClick={() => router.push("StudyNow")}
                 >
                     Study Your Deck

@@ -2,9 +2,11 @@ import Header from "./components/Home/Header";
 import Button from "@material-tailwind/react/Button";
 import Draft from './components/Home/Draft';
 import { useState } from 'react';
+import { useRouter } from "next/router";
 
 function add() {
 
+  const router = useRouter();
   const [question, setQuestion] = useState("mt-10 mx-20");
   const [answer, setAnswer] = useState("mt-10 mx-20 hidden");
 
@@ -43,6 +45,7 @@ function add() {
               block={false}
               iconOnly={false}
               ripple="light"
+              onClick={() => router.push("/lecture")}
             >
               Save and Finish
             </Button>
