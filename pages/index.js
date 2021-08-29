@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>AirFeed</title>
+        <title>Revisionary</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

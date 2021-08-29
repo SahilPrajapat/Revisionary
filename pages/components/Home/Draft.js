@@ -2,11 +2,11 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from "draft-js";
-// import { db } from "../firebase";
+import db from '../../../firebase';
 import { useRouter } from "next/dist/client/router";
 import { convertFromRaw, convertToRaw } from "draft-js";
 import { useSession } from "next-auth/client";
-// import { useDocumentOnce } from "react-firebase-hooks/firestore";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -21,35 +21,22 @@ function Draft() {
   const router = useRouter();
   const { id } = router.query;
 
-//   const [snapshot] = useDocumentOnce(
-//     db.collection("userDocs").doc(session.user.email).collection("docs").doc(id)
-//   );
+  // const [snapshot] = useDocumentOnce(
+  //   db.collection("course").doc(user.uid).collection("docs").doc(id)
+  // );
 
-//   useEffect(() => {
-//     if (snapshot?.data()?.editorState) {
-//       setEditorState(
-//         EditorState.createWithContent(
-//           convertFromRaw(snapshot?.data()?.editorState)
-//         )
-//       );
-//     }
-//   }, [snapshot]);
+  // useEffect(() => {
+  //   if (snapshot?.data()?.editorState) {
+  //     setEditorState(
+  //       EditorState.createWithContent(
+  //         convertFromRaw(snapshot?.data()?.editorState)
+  //       )
+  //     );
+  //   }
+  // }, [snapshot]);
 
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
-
-    // db.collection("userDocs")
-    //   .doc(session.user.email)
-    //   .collection("docs")
-    //   .doc(id)
-    //   .set(
-    //     {
-    //       editorState: convertToRaw(editorState.getCurrentContent()),
-    //     },
-    //     {
-    //       merge: true,
-    //     }
-    //   );
   };
 
   return (

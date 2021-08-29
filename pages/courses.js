@@ -1,25 +1,46 @@
 import Footer from "./components/Home/Footer";
 import Header from "./components/Home/Header";
 import Button from "@material-tailwind/react/Button";
-import { useState } from "react";
 import Card from "./components/Home/Card";
+import { db } from "../firebase";
+import { Component } from "react";
 
 
-function Courses() {
-
-  const [state, setState] = useState([1,2,3])
-
-  function changeList(){
-    let len = state.length;
-    for(let i = len+1; i <= len+3 && state.length < 11; i++){
-        state.push(i)
-    }
-    console.log([...state]);
-    setState([...state])
+class Courses extends Component {
+  
+  state={
+    data:[]
   }
 
-  return (
-    <div>
+  result = []
+
+  componentDidMount(){
+      var ref = db.ref('courses/');
+      ref.on('value', (snapshot) => {
+        this.result = Object.keys(snapshot.val());
+        // console.log(data);
+        let courses = []
+        for(let i = 0; i < 3 && i < this.result.length; i++){
+          courses.push(this.result[i])
+        }
+        this.setState({data: courses})
+      });
+  }
+
+   changeList(){
+    let len = this.state.data.length;
+    let courses = [...this.state.data]
+    for(let i = len; i < len+3 && courses.length < this.result.length; i++){
+      courses.push(this.result[i])
+    }
+    console.log(this.state);
+    this.setState({data: courses});
+  }
+
+  render () {
+
+    return (
+      <div>
       <Header />
 
       <div className="px-48 mt-16">
@@ -29,7 +50,8 @@ function Courses() {
             <h1 className="text-4xl font-semibold text-gray-400">Courses</h1>
           </div>
           <div className="grid grid-cols-3">
-            {state && state.map(s => <Card key={s}/>)}
+            {this.state.data && this.state.data.map(s => <Card key={s} curr={s}/>)}
+            {console.log(this.state)}
           </div>
           <Button
           buttonType="contained"
@@ -37,8 +59,8 @@ function Courses() {
           iconOnly={true}
           ripple="dark"
           className="md:inline-flex h-15 w-24 bg-regal-blue border-0 mt-2"
-          onClick={() => changeList()}
-        >
+          onClick={() => this.changeList()}
+          >
           <h1 className="text-white justify-center">Show more</h1>
         </Button>
         </div>
@@ -53,6 +75,7 @@ function Courses() {
       </div>
     </div>
   );
+}
 }
 
 export default Courses;

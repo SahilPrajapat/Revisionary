@@ -1,14 +1,19 @@
 import Header from "./components/Home/Header";
 import Button from "@material-tailwind/react/Button";
 import Draft from './components/Home/Draft';
+import {getSession, useSession} from 'next-auth/client';
+import {  useDocumentOnce } from "react-firebase-hooks/firestore";
+import db from '../firebase';
 import { useState } from 'react';
 import { useRouter } from "next/router";
 
 function add() {
 
+  
   const router = useRouter();
   const [question, setQuestion] = useState("mt-10 mx-20");
   const [answer, setAnswer] = useState("mt-10 mx-20 hidden");
+  const { id } = router.query;
 
   let handleQuestionClick = () => {
     setQuestion("mt-10 mx-20")
@@ -82,3 +87,13 @@ function add() {
 }
 
 export default add;
+
+export async function getServerSideProps(context) {
+  const session  = await getSession(context);
+
+  return {
+    props: {
+      session,
+    },
+  };
+}

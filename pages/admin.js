@@ -4,10 +4,20 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Header from "./components/Home/Header";
 import { useState } from 'react';
+import { db } from '../firebase';
 
 function admin() {
   const [course, setCourse] = useState("");
-    const router = useRouter();
+  const router = useRouter();
+
+  const create = (event) => {
+    db.ref(`courses/${course}`).set({
+      course,
+    }).then(
+      setCourse("")
+    )
+    
+  }
 
     useEffect(() => {
         const checkadmin = () => {
@@ -22,8 +32,6 @@ function admin() {
             checkadmin();
         }
     });
-
-
 
     return (
         <div>
@@ -57,7 +65,7 @@ function admin() {
                       block={false}
                       iconOnly={false}
                       ripple="light"
-                      // onClick={}
+                      onClick={() => create()}
                   >
                       Add Course
                   </Button>
